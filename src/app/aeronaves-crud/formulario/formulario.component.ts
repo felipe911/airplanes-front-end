@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { NonNullableFormBuilder } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AeronavesService } from '../services/aeronaves.service';
 
@@ -11,23 +11,23 @@ import { AeronavesService } from '../services/aeronaves.service';
 })
 export class FormularioComponent implements OnInit {
 
-  form: FormGroup;
+  form = this.formBuilder.group({
+    nome: [''],
+    ano: [0],
+    marca: [''],
+    vendido: [false],
+    descricao: ['']
+
+  });
 
   constructor(
 
-    private formBuilder: FormBuilder,
+    private formBuilder: NonNullableFormBuilder,
     private service: AeronavesService,
     private snackBar: MatSnackBar,
     private location: Location
 
     ) {
-    this.form = formBuilder.group({
-      nome: [null],
-      ano: [null],
-      marca: [null],
-      vendido: [null],
-      descricao: [null],
-    });
    }
 
   ngOnInit(): void {

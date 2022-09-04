@@ -5,7 +5,8 @@ import { FormularioComponent } from './formulario/formulario.component';
 
 const routes: Routes = [
   { path: '', component: AeronavesComponent },
-  { path: 'adicionar', component: FormularioComponent }
+  { path: 'adicionar', component: FormularioComponent },
+  { path: 'editar/:id', component: FormularioComponent }
 ];
 
 @NgModule({

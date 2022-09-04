@@ -1,0 +1,47 @@
+<mat-table [dataSource]="aeronaves" class="mat-elevation-z8">
+    <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+        <mat-cell *matCellDef="let aeronave"> {{aeronave.id}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="marca">
+        <mat-header-cell *matHeaderCellDef> Marca </mat-header-cell>
+        <mat-cell *matCellDef="let aeronave"> {{aeronave.marca}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="nome">
+        <mat-header-cell *matHeaderCellDef> Modelo </mat-header-cell>
+        <mat-cell *matCellDef="let aeronave"> {{aeronave.nome}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="ano">
+        <mat-header-cell *matHeaderCellDef> Ano </mat-header-cell>
+        <mat-cell *matCellDef="let aeronave"> {{aeronave.ano}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="vendido">
+        <mat-header-cell *matHeaderCellDef> Vendido </mat-header-cell>
+        <mat-cell *matCellDef="let aeronave">
+            <mat-icon aria-hidden="false" aria-label="Vendas">{{ aeronave.vendido | vendas }}></mat-icon>
+        </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="acoes" style="padding-right: 0px; margin: 0px;">
+        <mat-header-cell *matHeaderCellDef>
+            <button mat-icon-button color="accent" aria-label="Adicionar Aeronave" style="margin-top: 10px;">
+                <mat-icon (click)="adicionarAeronave()" class="btn btn-secondary">add_circle</mat-icon>
+            </button>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let aeronave">
+            <button mat-mini-fab color="primary" aria-label="Editar Aeronave" style="margin-right: 10px;">
+                <mat-icon (click)="editarAeronave(aeronave)">edit</mat-icon>
+            </button>
+            <button mat-mini-fab color="primary" aria-label="Remover Aeronave">
+                <mat-icon (click)="deletarAeronave(aeronave.id)">delete</mat-icon>
+            </button>
+        </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>

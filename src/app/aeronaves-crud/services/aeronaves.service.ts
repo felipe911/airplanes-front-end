@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Aeronave } from '../models/aeronave';
-import { delay, first, Observable } from 'rxjs';
+import { first, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -18,8 +18,16 @@ export class AeronavesService {
     return this.httpClient.get<Aeronave[]>(this.API + "aeronaves/").pipe(first());
   }
 
-  salvar(aeronave: Aeronave): Observable<Aeronave>{
+  salvar(aeronave: Partial<Aeronave>): Observable<Aeronave>{
     aeronave.created = new Date();
     return this.httpClient.post<Aeronave>(this.API_POST + "aeronaves/", aeronave);
+  }
+
+  editar(id: any): Observable<Aeronave>{
+    return this.httpClient.get<Aeronave>(this.API + "aeronaves/" + id);
+  }
+
+  deletar(id: number){
+    this.httpClient.delete<Aeronave>(this.API_POST + "aeronaves/" + id).subscribe();
   }
 }

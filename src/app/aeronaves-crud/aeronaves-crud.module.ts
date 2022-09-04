@@ -14,12 +14,15 @@ import { MatInputModule } from '@angular/material/input';
 import { FormularioComponent } from './formulario/formulario.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDialogModule } from '@angular/material/dialog';
+import { AeronavesListaComponent } from './aeronaves/aeronaves-lista/aeronaves-lista.component';
 
 
 @NgModule({
   declarations: [
     AeronavesComponent,
-    FormularioComponent
+    FormularioComponent,
+    AeronavesListaComponent
   ],
   imports: [
     CommonModule,
@@ -33,7 +36,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatDialogModule
   ]
 })
 export class AeronavesCrudModule { }
