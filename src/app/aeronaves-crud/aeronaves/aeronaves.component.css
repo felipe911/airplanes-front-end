@@ -4,17 +4,17 @@
     align-items: center;
 }
 
-h1{
-    font-size: 50px;
-    text-align: center;
-    margin-top: 50px;
-}
-
 table {
     width: 100%;
 }
 
 mat-card {
     width: 50%;
+}
 
+.loading-spinner{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 25px;
 }

@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { catchError, Observable, of } from 'rxjs';
+import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/error-dialog.component';
 import { Aeronave } from '../models/aeronave';
 import { AeronavesService } from '../services/aeronaves.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-aeronaves',
@@ -10,16 +13,36 @@ import { AeronavesService } from '../services/aeronaves.service';
 })
 export class AeronavesComponent implements OnInit {
 
-  aeronaves: Observable<Aeronave[]>;
+  aeronaves$: Observable<Aeronave[]>;
 
-  displayedColumns = ['id', 'marca', 'nome', 'ano', 'vendido'];
+  displayedColumns = ['id', 'marca', 'nome', 'ano', 'vendido', 'acoes'];
 
-  constructor(private aeronavesService : AeronavesService) { 
-    this.aeronaves = this.aeronavesService.listarAeronaves();
+  constructor(
+
+    private aeronavesService : AeronavesService,
+    public dialog: MatDialog,
+    private router: Router,
+    private route: ActivatedRoute
+
+    ) { 
+    this.aeronaves$ = this.aeronavesService.listarAeronaves().pipe(
+      catchError(error => {
+        this.onError('Erro ao carregar as Aeronaves');
+      return of([])
+    }));
   }
 
   ngOnInit(): void {
     
+  }
+
+  adicionarAeronave(){
+    this.router.navigate(['adicionar'], {relativeTo: this.route})
+  }
+
+  onError(errorMsg: string) {
+    this.dialog.open(ErrorDialogComponent, {
+      data: errorMsg});
   }
 
 }

@@ -1,0 +1,15 @@
+h1{
+    font-size: 50px;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.full-width{
+    width: 100%;
+}
+
+mat-card{
+    width: 50%;
+    margin: 2em auto;
+    text-align: center;
+}
