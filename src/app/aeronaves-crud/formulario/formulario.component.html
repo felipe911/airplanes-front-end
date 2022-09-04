@@ -1,12 +1,11 @@
 <mat-card>
     <mat-card-header>
         <div mat-card-avatar class="example-card"></div>
-        <mat-card-title>Adicionar Aeronave</mat-card-title>
+        <mat-card-title>{{ tittle }} Aeronave</mat-card-title>
     </mat-card-header>
 
     <mat-card-content>
         <form [formGroup]="form">
-
             <mat-form-field class="full-width">
                 <mat-label>Marca</mat-label>
                 <mat-select formControlName="marca">
@@ -37,7 +36,7 @@
             </mat-form-field>
 
             <mat-card-actions>
-                <button mat-raised-button (click)="salvar()">Salvar</button>
+                <button mat-raised-button (click)="salvar()">{{ btnSubmit }}</button>
                 <button mat-raised-button color="primary" style="margin-left: 30px;"
                     (click)="cancelar()">Cancelar</button>
             </mat-card-actions>

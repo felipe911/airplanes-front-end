@@ -1,6 +1,6 @@
+import { Aeronave } from './../models/aeronave';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Aeronave } from '../models/aeronave';
 import { first, Observable } from 'rxjs';
 
 @Injectable({
@@ -23,8 +23,12 @@ export class AeronavesService {
     return this.httpClient.post<Aeronave>(this.API_POST + "aeronaves/", aeronave);
   }
 
-  editar(id: any): Observable<Aeronave>{
+  buscarById(id: any){
     return this.httpClient.get<Aeronave>(this.API + "aeronaves/" + id);
+  }
+
+  atualizar(id: any, aeronave: Partial<Aeronave>){
+    return this.httpClient.put<Aeronave>(this.API + "aeronaves/" + id, aeronave);
   }
 
   deletar(id: number){

@@ -6,5 +6,5 @@ export interface Aeronave {
     descricao: string;
     vendido: boolean;
     created: Date;
-    updated: string;
+    updated: Date;
 }
