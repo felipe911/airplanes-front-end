@@ -6,17 +6,14 @@
 
     <mat-card-content>
         <form [formGroup]="form">
-            <!-- <mat-form-field appearance="fill">
-                <mat-label>Select me</mat-label>
-                <mat-select formControlName="position">
-                    <mat-option *ngFor="let pos of positions" [value]="pos">
-                        {{pos}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field> -->
 
             <mat-form-field class="full-width">
-                <input matInput placeholder="Marca" formControlName="marca">
+                <mat-label>Marca</mat-label>
+                <mat-select formControlName="marca">
+                    <mat-option value="Embraer">Embraer</mat-option>
+                    <mat-option value="Airbus">Airbus</mat-option>
+                    <mat-option value="Boeing">Boeing</mat-option>
+                </mat-select>
             </mat-form-field>
 
             <mat-form-field class="full-width">
@@ -24,17 +21,26 @@
             </mat-form-field>
 
             <mat-form-field class="full-width">
+                <input matInput placeholder="Descricao" formControlName="descricao">
+            </mat-form-field>
+
+            <mat-form-field class="full-width">
                 <input matInput placeholder="Ano" formControlName="ano">
             </mat-form-field>
 
             <mat-form-field>
-                <input matInput placeholder="Vendido" formControlName="vendido">
+                <mat-label>Vendido</mat-label>
+                <mat-select formControlName="vendido">
+                    <mat-option value="true">Sim</mat-option>
+                    <mat-option value="false">Não</mat-option>
+                </mat-select>
             </mat-form-field>
 
             <mat-card-actions>
-                <button mat-raised-button color="primary" style="margin-right: 30px;" (click)="cancelar()">Cancelar</button>
                 <button mat-raised-button (click)="salvar()">Salvar</button>
-              </mat-card-actions>
+                <button mat-raised-button color="primary" style="margin-left: 30px;"
+                    (click)="cancelar()">Cancelar</button>
+            </mat-card-actions>
         </form>
     </mat-card-content>
 </mat-card>

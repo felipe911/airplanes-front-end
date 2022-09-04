@@ -5,6 +5,6 @@ export interface Aeronave {
     ano: number;
     descricao: string;
     vendido: boolean;
-    created: string;
+    created: Date;
     updated: string;
 }

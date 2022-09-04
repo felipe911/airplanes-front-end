@@ -1,5 +1,8 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { AeronavesService } from '../services/aeronaves.service';
 
 @Component({
   selector: 'app-formulario',
@@ -10,15 +13,20 @@ export class FormularioComponent implements OnInit {
 
   form: FormGroup;
 
-  option: any;
-  positions: any[] = ['Programmer', 'Businness Analyst', 'Designer', 'DBA'];
+  constructor(
 
-  constructor(private formBuilder: FormBuilder) {
+    private formBuilder: FormBuilder,
+    private service: AeronavesService,
+    private snackBar: MatSnackBar,
+    private location: Location
+
+    ) {
     this.form = formBuilder.group({
       nome: [null],
       ano: [null],
       marca: [null],
-      vendido: [null]
+      vendido: [null],
+      descricao: [null],
     });
    }
 
@@ -26,11 +34,21 @@ export class FormularioComponent implements OnInit {
   }
 
   salvar(){
-
+    this.service.salvar(this.form.value).subscribe(result => this.onSucess(), error => this.onError());
+    this.cancelar();
   }
-
+  
   cancelar(){
-    
+    this.location.back();
   }
+  
+  private onError(){
+    this.snackBar.open('Erro ao salvar Aeronave', '', {duration: 5000});
+  }
+
+  private onSucess(){
+    this.snackBar.open('Aeronave salva com sucesso.', '', {duration: 5000});
+  }
+
 
 }
